@@ -1,5 +1,5 @@
 param virtualMachineName string = 'myVM'
-param virtualMachineSize string = 'Standard_B1ls'
+param virtualMachineSize string = 'Standard_B1s'
 param virtualMachineComputerName string = 'TestVM'
 param adminUsername string = 'rdeshmu'
 
@@ -25,7 +25,7 @@ var imageReference = {
   }
 }
 
-param location string = 'eastus'
+param location string = 'westus'
 
 @secure()
 param adminPassword string
@@ -67,7 +67,7 @@ resource nic 'Microsoft.Network/networkInterfaces@2024-05-01' = {
 
 resource virtualMachine 'Microsoft.Compute/virtualMachines@2024-03-01' = {
   name: virtualMachineName
-  location: location
+  location: resourceGroup().location
   properties: {
     hardwareProfile: {
       vmSize: virtualMachineSize

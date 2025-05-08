@@ -1,12 +1,13 @@
 #!/bin/bash
 
 # ==== CONFIGURATION ====
-RESOURCE_GROUP="vmFleetCom"
-LOCATION="eastus"
-BICEP_FILE="main.bicep"
+RESOURCE_GROUP="vmFleetDeployment"
+LOCATION="westus"
+BICEP_FILE="singleLinuxVM.bicep"
 
 # ==== PARAMETERS ====
 ADMIN_PASSWORD="<yourSecurePassword>" # Or use read -s to securely prompt
+
 
 # ==== LOGIN (Optional if already logged in) ====
 # az login

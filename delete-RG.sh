@@ -1,0 +1,1 @@
+# Write a script to delete a resource group and everything in it
