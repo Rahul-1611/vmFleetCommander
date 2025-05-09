@@ -1,12 +1,14 @@
 #!/bin/bash
 
 # ==== CONFIGURATION ====
-RESOURCE_GROUP="vmFleetDeployment"
+RESOURCE_GROUP="vmFleetCommander"
 LOCATION="westus"
-BICEP_FILE="singleLinuxVM.bicep"
+BICEP_FILE="main.bicep"
 
 # ==== PARAMETERS ====
 ADMIN_PASSWORD="<yourSecurePassword>" # Or use read -s to securely prompt
+read -s -p "Enter admin password: " ADMIN_PASSWORD
+echo 
 
 
 # ==== LOGIN (Optional if already logged in) ====
