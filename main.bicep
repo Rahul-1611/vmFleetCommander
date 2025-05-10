@@ -16,27 +16,21 @@ var vnetName = '${baseName}-vnet'
 param virtualNetAddPrefix array = ['10.0.0.0/16']
 var subnetPrefix = '10.0.0.0/24'
 var subnetName = '${projectName}-${env}-subnet'
-var subnetRef = vnet.properties.subnets[0].id // This extracts the id of the first subnet from the VNet resource 
+// var subnetRef = vnet.properties.subnets[0].id // This extracts the id of the first subnet from the VNet resource 
 
-resource vnet 'Microsoft.Network/virtualNetworks@2024-05-01' = {
-  name: vnetName
-  location: location
-  properties: {
-    addressSpace: {
-      addressPrefixes: virtualNetAddPrefix
-    }
-    subnets: [
-      {
-        name: subnetName
-        properties: {
-          addressPrefix: subnetPrefix
-        }
-      }
-    ]
+module vNetwork 'vnet_module.bicep' = {
+  name: 'vNetDeployment'
+  params: {
+    vnetName: vnetName
+    location: location
+    vnetAddressSpace: virtualNetAddPrefix
+    subnetName: subnetName
+    subnetAddressSpace: subnetPrefix
   }
 }
+var subnetRef = vNetwork.outputs.subnet1ResourceId
 
-module vMachines 'vmModule.bicep' = [
+module vMachines 'vm_Module.bicep' = [
   for i in range(1, instanceCount): {
     // for <index> in range(<startIndex>, <numberOfElements>): 
     name: 'vmDeployment-0${i}'
