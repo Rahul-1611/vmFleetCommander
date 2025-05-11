@@ -14,7 +14,7 @@ var baseName = '${projectName}-${env}'
 var vnetName = '${baseName}-vnet'
 
 param virtualNetAddPrefix array = ['10.0.0.0/16']
-var subnetPrefix = '10.0.0.0/24'
+param subnetPrefix string = '10.0.0.0/24'
 var subnetName = '${projectName}-${env}-subnet'
 // var subnetRef = vnet.properties.subnets[0].id // This extracts the id of the first subnet from the VNet resource 
 
