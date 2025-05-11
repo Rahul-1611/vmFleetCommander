@@ -1,3 +1,5 @@
+// Creates a resource group at the subscription level. 
+
 targetScope = 'subscription'
 
 param rgName string = 'vmFleetCommander'

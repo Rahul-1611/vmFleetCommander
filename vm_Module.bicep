@@ -1,17 +1,20 @@
-param vmName string
-param vmSize string
+// Parameters
+param vmName string // Name of the virtual machine
+param vmSize string // Size/sku of the VM (e.g., Standard_B1s)
 
-param location string
+param location string // Azure region for deployment
 
-param userName string = 'rdeshmu'
+param userName string = 'rdeshmu' // Admin username for the VM (default: rdeshmu)
 @secure()
-param adminPass string
+param adminPass string // Admin password for the VM
 
-param subnetId string
+param subnetId string // Resource ID of the subnet to attach the NIC
 
-param nicName string
+param nicName string // Name of the Network Interface (NIC) to create
 
-param ubuntuOSVersion string = 'Ubuntu-2004'
+param ubuntuOSVersion string = 'Ubuntu-2004' // OS version to install on VM
+
+// OS image reference map for different Ubuntu versions
 var imageReference = {
   'Ubuntu-2004': {
     publisher: 'Canonical'
@@ -27,6 +30,7 @@ var imageReference = {
   }
 }
 
+// Create a network interface with dynamic private IP and connect it to the subnet
 resource nic 'Microsoft.Network/networkInterfaces@2024-05-01' = {
   name: nicName
   location: location
@@ -37,7 +41,7 @@ resource nic 'Microsoft.Network/networkInterfaces@2024-05-01' = {
         properties: {
           privateIPAllocationMethod: 'Dynamic'
           subnet: {
-            id: subnetId
+            id: subnetId // Use subnet ID passed from main module
           }
         }
       }
@@ -45,34 +49,35 @@ resource nic 'Microsoft.Network/networkInterfaces@2024-05-01' = {
   }
 }
 
+// Deploy the virtual machine and attach the NIC created above
 resource virtualMachine 'Microsoft.Compute/virtualMachines@2024-11-01' = {
   name: vmName
   location: location
   properties: {
     hardwareProfile: {
-      vmSize: vmSize
+      vmSize: vmSize // VM SKU (e.g., Standard_B1s)
     }
     osProfile: {
-      computerName: vmName
-      adminPassword: adminPass
-      adminUsername: userName
+      computerName: vmName // Internal computer name
+      adminPassword: adminPass // Admin password (secure)
+      adminUsername: userName // Admin username (default: rdeshmu)
     }
     storageProfile: {
-      imageReference: imageReference[ubuntuOSVersion]
+      imageReference: imageReference[ubuntuOSVersion] // Select image based on version param
       osDisk: {
-        deleteOption: 'Delete'
-        createOption: 'FromImage'
+        deleteOption: 'Delete' // Delete OS disk when VM is deleted
+        createOption: 'FromImage' // Create OS disk from selected image
         managedDisk: {
-          storageAccountType: 'Standard_LRS'
+          storageAccountType: 'Standard_LRS' // Basic HDD storage
         }
       }
     }
     networkProfile: {
       networkInterfaces: [
         {
-          id: nic.id
+          id: nic.id // Attach NIC to VM
           properties: {
-            deleteOption: 'Delete'
+            deleteOption: 'Delete' // Delete NIC when VM is deleted
           }
         }
       ]
@@ -80,4 +85,5 @@ resource virtualMachine 'Microsoft.Compute/virtualMachines@2024-11-01' = {
   }
 }
 
+// Output the resource ID of the virtual machine
 output vmID string = virtualMachine.id

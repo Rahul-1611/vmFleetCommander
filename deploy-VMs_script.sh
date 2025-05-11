@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Script to deploy a resource group and vm file (multiple or single,just configure), validate too
 # ==== CONFIGURATION ====
 RESOURCE_GROUP="vmFleetCommander"
 LOCATION="westus"

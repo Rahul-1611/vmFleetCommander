@@ -1,5 +1,6 @@
 using 'main.bicep'
 
+// parameter file for main.bicep
 param env = 'final'
 //for final.bicepparam,change to final, since all the other params r same
 

@@ -1,3 +1,4 @@
+// Orchestrates the deployment of a single vnet n vm for practice
 param virtualMachineName string = 'myVM'
 param virtualMachineSize string = 'Standard_B1s'
 param virtualMachineComputerName string = 'TestVM'

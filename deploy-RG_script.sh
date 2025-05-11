@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# Script to deploy a resource group 
 deploymentName="demoSubDeployment"
 deploymentLocation="westus"
 templateFile="./createRG.bicep"
