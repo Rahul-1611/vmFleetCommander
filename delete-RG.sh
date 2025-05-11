@@ -11,5 +11,5 @@ then
     az group delete --name "$RG_NAME" --yes
     echo "Done: RG has been Deleted"
 else
-    echo "Deletion canceled."
+    echo "Deletion canceled"
 fi

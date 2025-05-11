@@ -33,7 +33,7 @@ var subnetRef = vNetwork.outputs.subnet1ResourceId
 module vMachines 'vm_Module.bicep' = [
   for i in range(1, instanceCount): {
     // for <index> in range(<startIndex>, <numberOfElements>): 
-    name: 'vmDeployment-0${i}'
+    name: 'vmDeployment-${padLeft(string(i),2,'0')}'
     params: {
       vmName: '${baseName}-vm${padLeft(string(i),2,'0')}'
       nicName: '${baseName}-nic-${padLeft(string(i),2,'0')}'

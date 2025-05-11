@@ -1,6 +1,6 @@
 using 'main.bicep'
 
-param env = 'test'
+param env = 'final'
 //for final.bicepparam,change to final, since all the other params r same
 
 param projectName = 'vmFleet'
