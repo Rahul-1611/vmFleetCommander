@@ -111,3 +111,13 @@ chmod +x delete-RG.sh
 🤖 **Assistance & Authoring Support:**
 
 ChatGPT-4o
+
+---
+
+## 🧠 Project Inspiration
+
+This project was inspired by the excellent open-source work at:
+
+🔗 [cloud-engineering-projects by @madebygps](https://github.com/madebygps/cloud-engineering-projects)
+
+Credit for the original project idea structure and learning goals goes to them.
