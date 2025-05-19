@@ -1,13 +1,15 @@
 # 🚀 vmFleetCommander
 
 **vmFleetCommander** is an Infrastructure-as-Code (IaC) project using Bicep to provision Azure infrastructure. It supports multi-VM fleet deployments with reusable modules for VNet, NSG, and VM creation, as well as scripts and parameter files for automation and testing.
-
+---
+- ![vmFleetCommander](https://github.com/user-attachments/assets/8ffb7648-aae2-4302-87e9-4382516e2c6c)
 ---
 ## 📝 Prerequisites
 
 - Azure CLI installed and logged in (`az login`)
 - Bicep CLI installed (or use Azure CLI 2.20+ which includes it)
 - An existing Azure subscription
+
 
 ## 📁 Project Structure
 
